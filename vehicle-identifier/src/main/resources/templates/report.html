@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome</title>
+<object th:include="fragments/header :: scripts" th:remove="tag"></object>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<nav th:replace="fragments/header :: navbar"></nav>
+	<div class="container" style="margin-top: 30px;">
+		<div class="row">
+			<div class="span8">
+				<form method="post" action="/report" enctype="multipart/form-data"
+					class="form-horizontal" id="uploadForm" name="uploadForm">
+					<fieldset>
+						<legend>Report</legend>
+						<div class="table-responsive" th:if="${map != null}">
+							<table class="table">
+								<tr th:each="element : ${map}">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>List of Ids for <strong><span th:text="#{${element.key}}"></span></strong></th>
+												<td>Vehicle Count : <strong><span th:text="${element.value.size()}"></span></strong></td>
+											</tr>
+										</thead>
+										<tbody id="tableBody">
+											<tr th:each="val : ${element.value}">
+												<td th:text="${val.id}"></td>
+											</tr>
+										</tbody>
+									</table>
+								</tr>
+							</table>
+
+						</div>
+						<div class="col-md-4 text-center row" th:if="${map == null}">
+							<h3>No vehicles found!</h3>
+						</div>
+						<div class="col-md-6 text-center row" th:if="${error != null}">
+							<div class="alert alert-danger">
+	 							 <strong><span th:text="${error}"></span></strong>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

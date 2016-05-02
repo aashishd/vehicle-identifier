@@ -1,0 +1,12 @@
+<html>
+<head>
+<script>
+var i = 0;
+var timer = setInterval(function(){i++;},1000);
+</script>
+</head>
+<body>
+		<input type="text" color="red">i</input>
+		<input type="button" onclick="clearInterval(timer)" value="Reset"></input>
+</body>
+</html>
